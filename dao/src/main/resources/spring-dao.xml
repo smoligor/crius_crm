@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+    <context:component-scan base-package="com.becomejavasenior.jdbc"/>
+
+    <context:property-placeholder location="classpath:database.properties"/>
+
+    <bean id="dbUrl" class="java.net.URI">
+        <constructor-arg value="#{ systemEnvironment['DATABASE_URL'] ?: 'postgres://${db.user}:${db.password}@${db.host}:${db.port}/${db.dbname}' }"/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.host + ':' + @dbUrl.port + @dbUrl.path }"/>
+        <property name="username" value="#{ @dbUrl.userInfo.split(':')[0] }"/>
+        <property name="password" value="#{ @dbUrl.userInfo.split(':')[1] }"/>
+        <property name="driverClassName" value="${db.driver}"/>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,59 @@
+/*Widgets*/
+.widget {
+    font-size: xx-large;
+    margin-bottom: 0;
+}
+.widget-blue {
+    background-color: #C0E0FF;
+}
+.widget-green {
+    background-color: #D0FFC0;
+}
+.widget-red {
+    background-color: #FFE0C0;
+}
+.header {
+    background-color: rgba(0,0,0,0.075);
+    font-weight: bold;
+}
+.row-body {
+    height: 100px;
+}
+.row-mini {
+    height: 75px;
+    font-size: x-large;
+}
+.text {
+    color: #404040;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.border {
+    border: 1px #808080 solid;
+}
+
+/*Log list*/
+.body-scroll {
+    display: block;
+    height: 581px;
+    overflow-y: scroll;
+}
+.row-log {
+    border-top: 1px #808080 solid;
+    padding: 1px;
+}
+.even {
+    background-color: #FFFFD0;
+}
+#logList {
+    font-size: small;
+}
+#textLogHeader {
+    background-color: #FFC080;
+    text-align-last: center;
+    font-weight: bold;
+    font-size: medium;
+}

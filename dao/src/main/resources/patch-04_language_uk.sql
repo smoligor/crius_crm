@@ -1,0 +1,1 @@
+UPDATE language SET code = 'UK' WHERE code = 'UA' AND id = 1
